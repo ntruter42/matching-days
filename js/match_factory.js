@@ -3,18 +3,25 @@ function MatchingDays() {
 	let day2 = [];
 	let message = '';
 
-	function setDays(dayOne, dayTwo) {
-		day1 = dayOne;
-		day2 = dayTwo;
+	function setDayOne(date) {
+		day1 = date;
+	}
+
+	function setDayTwo(date) {
+		day2 = date;
 	}
 
 	function checkDays(){
 		if (day1 === '' && day2 === '') {
-			setMessage();
+			setMessage('Select 2 dates');
+		} else if (day1 === '') {
+			setMessage('Select second date');
+		} else if (day2 === '') {
+			setMessage('Select first date');
 		}
 	}
 
-	function isMatch() {
+	function daysMatch() {
 		if (day1 === day2) {
 			return true;
 		}
@@ -35,11 +42,17 @@ function MatchingDays() {
 		message = messageContent;
 	}
 
+	function getMessage() {
+		return message;
+	}
+
 	return {
-		setDays,
-		isMatch,
+		setDayOne,
+		setDayTwo,
+		daysMatch,
 		colorName,
 		checkDays,
-		setMessage
+		setMessage,
+		getMessage
 	}
 }

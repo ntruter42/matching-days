@@ -1,0 +1,93 @@
+:root {
+	font-size: 20px;
+	font-family: sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	width: 100vw;
+	height: 100vh;
+}
+
+#match-display {
+	display: flex;
+	justify-content: space-evenly;
+
+	width: 80%;
+}
+
+.day-box {
+	background-color: lightgrey;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: 10px;
+	height: 100px;
+	width: 100px;
+}
+
+.day-text {
+	text-align: center;
+
+	transform: rotate(-45deg);
+}
+
+.red {
+	background-color: #faa;
+}
+
+.blue {
+	background-color: #aaf;
+}
+
+.green {
+	background-color: #afa;
+}
+
+.transparent {
+	background-color: #0000;
+}
+
+#match-message-box {
+	text-align: center;
+
+	width: auto;
+}
+
+#match-input {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	width: 100%;
+}
+
+
+#match-input form {
+	display: flex;
+	justify-content: space-evenly;
+
+	width: 100%;
+}
+
+#match-input form label {
+	background-color: lightgrey;
+
+	border-radius: 10px;
+	padding: 10px;
+}
+
+
+* {
+	outline: 1px solid black;
+}
+
+.main-container {
+	outline: 1px solid magenta;
+}

@@ -9,22 +9,26 @@
 	<link rel="stylesheet" href="match.css">
 
 	<script type="text/x-template" class="day-template">
-		<span class="{{color}}">{{day}}</span>
+		<span class="day-box {{color}}">{{day}}</span>
 	</script>
 </head>
 
 <body>
-	<div class="match-display">
-		<div class="day"><span class="{{color}}">Monday</span></div>
-		<div class="day"><span class="{{color}}">Tuesday</span></div>
-		<div class="day"><span class="{{color}}">Wednesday</span></div>
-		<div class="day"><span class="{{color}}">Thursday</span></div>
-		<div class="day"><span class="{{color}}">Friday</span></div>
-		<div class="day"><span class="{{color}}">Saturday</span></div>
-		<div class="day"><span class="{{color}}">Sunday</span></div>
+	<div id="match-display" class="main-container">
+		<div class="day-box green"><span class="day-text">Monday</span></div>
+		<div class="day-box"><span class="day-text">Tuesday</span></div>
+		<div class="day-box blue"><span class="day-text">Wednesday</span></div>
+		<div class="day-box"><span class="day-text">Thursday</span></div>
+		<div class="day-box red"><span class="day-text">Friday</span></div>
+		<div class="day-box"><span class="day-text">Saturday</span></div>
+		<div class="day-box"><span class="day-text">Sunday</span></div>
+	</div>
+	
+	<div id="match-message-box">
+		<span class="match-message">Remove this message</span>
 	</div>
 
-	<div class="match-input">
+	<div id="match-input main-container">
 		<form>
 			<label for="match-date1">
 				<span>First Date</span>
