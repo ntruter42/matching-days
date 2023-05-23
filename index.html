@@ -8,12 +8,14 @@
 	<title>Matching Days</title>
 	<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
 
-	<!-- <link rel="shortcut icon" href="" type="image/x-icon"> -->
+	<!-- ==================== STYLING ==================== -->
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/match.css">
 
+	<!-- ==================== SOURCES ==================== -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 
+	<!-- ==================== TEMPLATES ==================== -->
 	<script type="text/x-template" class="day-template">
 		{{#each days}}
 		<div class="day-box {{color}}">
@@ -24,32 +26,37 @@
 </head>
 
 <body>
+	<!-- ==================== HEADING ==================== -->
 	<header>
 		<h1>Matching Days</h1>
 	</header>
 
+	<!-- ==================== DAYS DISPLAY ==================== -->
 	<div id="match-display" class="main-container">
 	</div>
 
+	<!-- ==================== MESSAGES ==================== -->
 	<div id="match-message-box">
 		<span id="match-message" class="default-color">Remove this message</span>
 	</div>
 
+	<!-- ==================== DATE INPUTS ==================== -->
 	<div id="match-input" class="main-container">
 		<form>
 			<label for="match-date1">
-				<span>Date One</span>
+				<span><b>Date One</b></span>
 				<input type="date" name="match-date1" id="match-date1">
 			</label>
 
 			<label for="match-date2">
-				<span>Date Two</span>
+				<span><b>Date Two</b></span>
 				<input type="date" name="match-date2" id="match-date2">
 			</label>
 		</form>
 	</div>
 </body>
 
+<!-- ==================== JAVASCRIPT SOURCES ==================== -->
 <script src="js/match_factory.js"></script>
 <script src="js/match_dom.js"></script>
 

@@ -5,6 +5,11 @@
 	src: url('../assets/fonts/TropicalTasteDemo-nRy60.otf');
 }
 
+@font-face {
+	font-family: 'Ziclose';
+	src: url('../assets/fonts/Ziclose-VGdzz.ttf');
+}
+
 /* ==================== MAIN ==================== */
 
 :root {
@@ -31,6 +36,8 @@ body {
 
 	width: 100vw;
 	height: 100vh;
+	position: relative;
+	bottom: 50px;
 }
 
 header {
@@ -57,7 +64,6 @@ header h1 {
 }
 
 .day-box {
-	/* background-color: var(--light-bg); */
 	background-image: linear-gradient(65deg, #fff, #fff, #fff8, #fff4, #fff4, #fff4, #ffff, #fff);
 	color: var(--dark-tx);
 	border: 2px solid var(--dark-ol);
@@ -98,17 +104,19 @@ header h1 {
 
 	height: 160px;
 	width: 120px;
-	transform: scale(1);
-	/* margin: 20px; */
+	transform: scale(1) rotate(-5deg);
 }
 
 .day-text {
+	font-family: 'Ziclose';
 	text-align: center;
 
 	transform: rotate(-45deg);
 }
 
 .green .day-text {
+	font-size: 1.1rem;
+
 	transform: rotate(-25deg);
 }
 
@@ -123,7 +131,7 @@ header h1 {
 
 	width: auto;
 	border-radius: 20px 10px;
-	padding: 10px;
+	padding: 10px 15px;
 	margin: 40px 0;
 }
 
@@ -139,10 +147,6 @@ header h1 {
 	color: #f88 !important;
 }
 
-#match-message-box {
-	outline: 2px solid green;
-}
-
 /* ==================== FORM ==================== */
 
 #match-input {
@@ -151,6 +155,7 @@ header h1 {
 	align-items: center;
 
 	width: 100%;
+	max-width: 1000px;
 }
 
 
@@ -170,6 +175,10 @@ header h1 {
 	padding: 10px 10px 10px 15px;
 }
 
+#match-input form label span {
+	margin-right: 5px;
+}
+
 #match-input form label input {
 	color: var(--dark-tx);
 
@@ -179,10 +188,15 @@ header h1 {
 
 /* ==================== ANIMATIONS ==================== */
 
+/* No animations */
+
 /* ==================== RESPONSIVENESS ==================== */
+
+/* Responsiveness is built in using flex-wrap and percentage height & width values*/
 
 /* ==================== LAYOUT GUIDES ==================== */
 
+/* Uncommnent the next line to reveal layout guides */
 /*
 * {
 	outline: 1px solid black;

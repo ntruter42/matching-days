@@ -86,13 +86,17 @@ matchDayTwo.addEventListener('change', function () {
 matchDayOne.parentNode.addEventListener('wheel', function (event) {
 	event.preventDefault();
 
-	var currentDate = new Date(matchDayOne.value);
-	var newDate = new Date(currentDate);
-	var scrollAmount = event.deltaY;
+	if (matchDayOne.value === '') {
+		matchDayOne.valueAsDate = new Date();
+	}
 
-	if (scrollAmount > 0) {
+	let currentDate = new Date(matchDayOne.value);
+	let newDate = new Date(currentDate);
+	let scrollAmount = event.deltaY;
+
+	if (scrollAmount < 0) {
 		newDate.setDate(currentDate.getDate() + 1);
-	} else if (scrollAmount < 0) {
+	} else if (scrollAmount > 0) {
 		newDate.setDate(currentDate.getDate() - 1);
 	}
 
@@ -108,19 +112,65 @@ matchDayOne.parentNode.addEventListener('wheel', function (event) {
 matchDayTwo.parentNode.addEventListener('wheel', function (event) {
 	event.preventDefault();
 
-	var currentDate = new Date(matchDayTwo.value);
-	var newDate = new Date(currentDate);
-	var scrollAmount = event.deltaY;
+	if (matchDayTwo.value === '') {
+		matchDayTwo.valueAsDate = new Date();
+	}
 
-	if (scrollAmount > 0) {
+	let currentDate = new Date(matchDayTwo.value);
+	let newDate = new Date(currentDate);
+	let scrollAmount = event.deltaY;
+
+	if (scrollAmount < 0) {
 		newDate.setDate(currentDate.getDate() + 1);
-	} else if (scrollAmount < 0) {
+	} else if (scrollAmount > 0) {
 		newDate.setDate(currentDate.getDate() - 1);
 	}
 
-	var formattedDate = newDate.toISOString().split('T')[0];
+	let formattedDate = newDate.toISOString().split('T')[0];
 	matchDayTwo.value = formattedDate;
 
+	match.setDayTwo(matchDayTwo.value);
+	match.checkDays();
+	updateDisplay();
+	displayMessage(match.getMessage());
+});
+
+matchDisplay.addEventListener('wheel', function (event) {
+	event.preventDefault();
+
+	if (matchDayOne.value === '') {
+		matchDayOne.valueAsDate = new Date();
+	}
+
+	if (matchDayTwo.value === '') {
+		matchDayTwo.valueAsDate = new Date();
+	}
+
+	let currentDate1 = new Date(matchDayOne.value);
+	let newDate1 = new Date(currentDate1);
+	let currentDate2 = new Date(matchDayTwo.value);
+	let newDate2 = new Date(currentDate2);
+
+	let scrollAmount = event.deltaY;
+
+	if (scrollAmount < 0) {
+		newDate1.setDate(currentDate1.getDate() + 1);
+	} else if (scrollAmount > 0) {
+		newDate1.setDate(currentDate1.getDate() - 1);
+	}
+
+	if (scrollAmount < 0) {
+		newDate2.setDate(currentDate2.getDate() + 1);
+	} else if (scrollAmount > 0) {
+		newDate2.setDate(currentDate2.getDate() - 1);
+	}
+
+	let formattedDate1 = newDate1.toISOString().split('T')[0];
+	let formattedDate2 = newDate2.toISOString().split('T')[0];
+	matchDayOne.value = formattedDate1;
+	matchDayTwo.value = formattedDate2;
+
+	match.setDayOne(matchDayOne.value);
 	match.setDayTwo(matchDayTwo.value);
 	match.checkDays();
 	updateDisplay();
