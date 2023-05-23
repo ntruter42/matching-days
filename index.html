@@ -6,24 +6,47 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Matching Days</title>
-	<link rel="stylesheet" href="match.css">
+
+	<!-- <link rel="shortcut icon" href="" type="image/x-icon"> -->
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/match.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 
 	<script type="text/x-template" class="day-template">
-		<span class="day-box {{color}}">{{day}}</span>
+		{{#each days}}
+		<div class="day-box {{color}}">
+			<span class="day-text">{{day}}</span>
+		</div>
+		{{/each}}
 	</script>
 </head>
 
 <body>
 	<div id="match-display" class="main-container">
-		<div class="day-box green"><span class="day-text">Monday</span></div>
-		<div class="day-box"><span class="day-text">Tuesday</span></div>
-		<div class="day-box blue"><span class="day-text">Wednesday</span></div>
-		<div class="day-box"><span class="day-text">Thursday</span></div>
-		<div class="day-box red"><span class="day-text">Friday</span></div>
-		<div class="day-box"><span class="day-text">Saturday</span></div>
-		<div class="day-box"><span class="day-text">Sunday</span></div>
+		<!-- <div class="day-box blue">
+			<span class="day-text">Monday</span>
+		</div>
+		<div class="day-box">
+			<span class="day-text">Tuesday</span>
+		</div>
+		<div class="day-box green">
+			<span class="day-text">Wednesday</span>
+		</div>
+		<div class="day-box">
+			<span class="day-text">Thursday</span>
+		</div>
+		<div class="day-box red">
+			<span class="day-text">Friday</span>
+		</div>
+		<div class="day-box">
+			<span class="day-text">Saturday</span>
+		</div>
+		<div class="day-box">
+			<span class="day-text">Sunday</span>
+		</div> -->
 	</div>
-	
+
 	<div id="match-message-box">
 		<span class="match-message">Remove this message</span>
 	</div>
@@ -41,5 +64,8 @@
 		</form>
 	</div>
 </body>
+
+<script src="js/match_factory.js"></script>
+<script src="js/match.js"></script>
 
 </html>

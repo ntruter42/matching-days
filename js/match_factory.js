@@ -1,23 +1,25 @@
 function MatchingDays() {
-	let day1 = [];
-	let day2 = [];
-	let message = '';
+	let day1 = '';
+	let day2 = '';
+	let message = {};
+
+	const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 	function setDayOne(date) {
-		day1 = date;
+		day1 = dayOfWeek[date.getDay()];
 	}
 
 	function setDayTwo(date) {
-		day2 = date;
+		day2 = dayOfWeek[date.getDay()];
 	}
 
-	function checkDays(){
+	function checkDays() {
 		if (day1 === '' && day2 === '') {
-			setMessage('Select 2 dates');
+			setMessage('Select 2 dates', 'default-color');
 		} else if (day1 === '') {
-			setMessage('Select second date');
+			setMessage('Select second date', 'default-color');
 		} else if (day2 === '') {
-			setMessage('Select first date');
+			setMessage('Select first date', 'default-color');
 		}
 	}
 
@@ -35,15 +37,20 @@ function MatchingDays() {
 		} else if (day === day2) {
 			return 'red';
 		}
-		return 'transparent';
+		return '';
 	}
 
-	function setMessage(messageContent) {
-		message = messageContent;
+	function setMessage(messageContent, color) {
+		if (messageContent !== '') {
+			message[messageContent] = color;
+		}
 	}
 
 	function getMessage() {
-		return message;
+		let displayMessage = message;
+		message = {};
+
+		return displayMessage;
 	}
 
 	return {

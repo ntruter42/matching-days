@@ -1,3 +1,5 @@
+/* ==================== MAIN ==================== */
+
 :root {
 	font-size: 20px;
 	font-family: sans-serif;
@@ -13,11 +15,15 @@ body {
 	height: 100vh;
 }
 
+/* ==================== DISPLAY ==================== */
+
 #match-display {
 	display: flex;
-	justify-content: space-evenly;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 
-	width: 80%;
+	width: 100%;
 }
 
 .day-box {
@@ -27,9 +33,10 @@ body {
 	justify-content: center;
 	align-items: center;
 
-	border-radius: 10px;
+	border-radius: 40px 10px;
 	height: 100px;
 	width: 100px;
+	margin: 10px;
 }
 
 .day-text {
@@ -48,17 +55,19 @@ body {
 
 .green {
 	background-color: #afa;
+
+	transform: scale(1.2);
 }
 
-.transparent {
-	background-color: #0000;
-}
+/* ==================== MESSAGE ==================== */
 
 #match-message-box {
 	text-align: center;
 
 	width: auto;
 }
+
+/* ==================== FORM ==================== */
 
 #match-input {
 	display: flex;
@@ -83,7 +92,13 @@ body {
 	padding: 10px;
 }
 
+/* ==================== ANIMATIONS ==================== */
 
+/* ==================== RESPONSIVENESS ==================== */
+
+/* ==================== LAYOUT GUIDES ==================== */
+
+/*
 * {
 	outline: 1px solid black;
 }
