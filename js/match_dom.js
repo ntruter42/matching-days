@@ -18,8 +18,17 @@ let messageTimeout = null;
 // INITIALIZATION
 const match = MatchingDays();
 match.checkDays();
-displayMessage(match.getMessage());
+clearInputs();
 updateDisplay();
+displayMessage(match.getMessage());
+
+/* ==================== INPUT ==================== */
+
+function clearInputs() {
+	matchDayOne.value = '';
+	matchDayTwo.value = '';
+}
+
 
 /* ==================== MESSAGES ==================== */
 
