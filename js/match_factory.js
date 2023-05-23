@@ -5,21 +5,29 @@ function MatchingDays() {
 
 	const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-	function setDayOne(date) {
+	function setDayOne(dateString) {
+		let date = new Date(dateString);
+
 		day1 = dayOfWeek[date.getDay()];
 	}
 
-	function setDayTwo(date) {
+	function setDayTwo(dateString) {
+		let date = new Date(dateString);
+
 		day2 = dayOfWeek[date.getDay()];
 	}
 
 	function checkDays() {
 		if (day1 === '' && day2 === '') {
-			setMessage('Select 2 dates', 'default-color');
+			setMessage('Select <b>Date One</b> and <b>Date Two</b>', '');
 		} else if (day1 === '') {
-			setMessage('Select second date', 'default-color');
+			setMessage('Now select <b>Date One</b>', '');
 		} else if (day2 === '') {
-			setMessage('Select first date', 'default-color');
+			setMessage('Now select <b>Date Two</b>', '');
+		} else if (day1 === day2) {
+			setMessage("It's a match!", '');
+		} else {
+			setMessage("No match :(", '');
 		}
 	}
 
@@ -30,7 +38,7 @@ function MatchingDays() {
 	}
 
 	function colorName(day) {
-		if (day === day1 === day2) {
+		if (day === day1 && day === day2) {
 			return 'green';
 		} else if (day === day1) {
 			return 'blue';
@@ -43,6 +51,8 @@ function MatchingDays() {
 	function setMessage(messageContent, color) {
 		if (messageContent !== '') {
 			message[messageContent] = color;
+		} else {
+			console.log("messageContent for setMessage is emepty");
 		}
 	}
 

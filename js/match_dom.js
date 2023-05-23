@@ -10,14 +10,15 @@ const matchDayTwo = document.querySelector('#match-date2');
 const matchDisplay = document.querySelector('#match-display');
 
 const messageBox = document.querySelector('#match-message-box');
-const messageContent = messageBox.querySelector('#match-message');
+const messageText = messageBox.querySelector('#match-message');
 
 // FUNTIONALITY
 let messageTimeout = null;
 
 // INITIALIZATION
 const match = MatchingDays();
-displayMessage();
+match.checkDays();
+displayMessage(match.getMessage());
 updateDisplay();
 
 /* ==================== MESSAGES ==================== */
@@ -31,13 +32,12 @@ function displayMessage(msgObj) {
 
 			messageBox.className = '';
 			messageText.innerHTML = message;
-			messageBox.classList.add(color);
-
-			messageTimeout = setTimeout(function () {
-				messageBox.classList.add('hidden');
-			}, message.length * 100);
+			if (color) {
+				messageBox.classList.add(color);
+			}
 		}
 	} else {
+		messageBox.classList.add('hidden');
 		console.log("displayMessage() received a n empty message");
 	}
 }
@@ -47,13 +47,13 @@ function displayMessage(msgObj) {
 function updateDisplay() {
 	let dayTa = {
 		days: [
-			{ day: "Monday", color: match.colorName("Monday") },
-			{ day: "Tuesday", color: match.colorName("Tuesday") },
-			{ day: "Wednesday", color: match.colorName("Wednesday") },
-			{ day: "Thursday", color: match.colorName("Thursday") },
-			{ day: "Friday", color: match.colorName("Friday") },
-			{ day: "Saturday", color: match.colorName("Saturday") },
-			{ day: "Sunday", color: match.colorName("Sunday") }
+			{ day: "Monday", color: match.colorName('Monday') },
+			{ day: "Tuesday", color: match.colorName('Tuesday') },
+			{ day: "Wednesday", color: match.colorName('Wednesday') },
+			{ day: "Thursday", color: match.colorName('Thursday') },
+			{ day: "Friday", color: match.colorName('Friday') },
+			{ day: "Saturday", color: match.colorName('Saturday') },
+			{ day: "Sunday", color: match.colorName('Sunday') }
 		]
 	};
 
@@ -61,3 +61,17 @@ function updateDisplay() {
 }
 
 /* ==================== EVENT LISTENERS ==================== */
+
+matchDayOne.addEventListener('change', function () {
+	match.setDayOne(matchDayOne.value);
+	match.checkDays();
+	updateDisplay();
+	displayMessage(match.getMessage());
+});
+
+matchDayTwo.addEventListener('change', function () {
+	match.setDayTwo(matchDayTwo.value);
+	match.checkDays();
+	updateDisplay();
+	displayMessage(match.getMessage());
+});

@@ -23,6 +23,10 @@
 </head>
 
 <body>
+	<header>
+		<h1>Matching Days</h1>
+	</header>
+	
 	<div id="match-display" class="main-container">
 		<!-- <div class="day-box blue">
 			<span class="day-text">Monday</span>
@@ -48,17 +52,17 @@
 	</div>
 
 	<div id="match-message-box">
-		<span class="match-message">Remove this message</span>
+		<span id="match-message" class="default-color">Remove this message</span>
 	</div>
 
-	<div id="match-input main-container">
+	<div id="match-input" class="main-container">
 		<form>
 			<label for="match-date1">
-				<span>First Date</span>
+				<span>Date One</span>
 				<input type="date" name="match-date1" id="match-date1">
 			</label>
 			<label for="match-date2">
-				<span>Second Date</span>
+				<span>Date Two</span>
 				<input type="date" name="match-date2" id="match-date2">
 			</label>
 		</form>
@@ -66,6 +70,6 @@
 </body>
 
 <script src="js/match_factory.js"></script>
-<script src="js/match.js"></script>
+<script src="js/match_dom.js"></script>
 
 </html>

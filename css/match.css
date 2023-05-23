@@ -1,11 +1,29 @@
+/* ==================== SOURCES ==================== */
+
+@font-face {
+	font-family: 'Tropical';
+	src: url('../assets/fonts/TropicalTasteDemo-nRy60.otf');
+}
+
 /* ==================== MAIN ==================== */
 
 :root {
+	--dark-bg: #000;
+	--dark-ol: #000;
+	--dark-tx: #000;
+	--light-bg: #fff8;
+	--light-ol: #fff;
+	--light-tx: #fff;
+
 	font-size: 20px;
 	font-family: sans-serif;
 }
 
 body {
+	background-image: url('../assets/images/tropical.png');
+	background-size: cover;
+	background-position: right;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -13,6 +31,17 @@ body {
 
 	width: 100vw;
 	height: 100vh;
+}
+
+header {
+	font-family: 'Tropical';
+	font-size: 2rem;
+
+	margin-bottom: 40px;
+}
+
+header h1 {
+	letter-spacing: 4px;
 }
 
 /* ==================== DISPLAY ==================== */
@@ -27,7 +56,9 @@ body {
 }
 
 .day-box {
-	background-color: lightgrey;
+	background-color: var(--light-bg);
+	color: var(--dark-tx);
+	border: 2px solid var(--dark-ol);
 
 	display: flex;
 	justify-content: center;
@@ -36,7 +67,7 @@ body {
 	border-radius: 40px 10px;
 	height: 100px;
 	width: 100px;
-	margin: 10px;
+	margin: 5px;
 }
 
 .day-text {
@@ -54,9 +85,10 @@ body {
 }
 
 .green {
-	background-color: #afa;
+	background-color: #afa !important;
 
-	transform: scale(1.2);
+	transform: scale(1.4);
+	margin: 20px;
 }
 
 /* ==================== MESSAGE ==================== */
@@ -64,7 +96,18 @@ body {
 #match-message-box {
 	text-align: center;
 
+	background-color: var(--dark-bg);
+	color: var(--light-tx);
+	border: 2px solid var(--dark-ol);
+
 	width: auto;
+	border-radius: 20px 10px;
+	padding: 10px;
+	margin: 40px 0;
+}
+
+.hidden {
+	opacity: 0;
 }
 
 /* ==================== FORM ==================== */
@@ -86,10 +129,19 @@ body {
 }
 
 #match-input form label {
-	background-color: lightgrey;
+	background-color: var(--dark-bg);
+	color: var(--light-tx);
+	border: 2px solid var(--light-ol);
 
-	border-radius: 10px;
-	padding: 10px;
+	border-radius: 20px 15px 30px 20px;
+	padding: 10px 10px 10px 15px;
+}
+
+#match-input form label input {
+	color: var(--dark-tx);
+
+	border-radius: 20px 10px;
+	padding: 5px;
 }
 
 /* ==================== ANIMATIONS ==================== */
