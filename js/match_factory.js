@@ -42,7 +42,7 @@ function MatchingDays() {
 		} else if (day1 === day2) {
 			setMessage("It's a match!", 'green-text');
 		} else if (day1 !== day2) {
-			setMessage("No match :(", 'grey-text');
+			setMessage("No match :(", 'red-text');
 		}
 	}
 

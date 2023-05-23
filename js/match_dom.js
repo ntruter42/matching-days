@@ -1,6 +1,6 @@
 //  TEMPLATE SETUP
-let templateSource = document.querySelector('.day-template').innerHTML;
-let dayTemplate = Handlebars.compile(templateSource);
+let daySource = document.querySelector('.day-template').innerHTML;
+let dayTemplate = Handlebars.compile(daySource);
 
 // INPUT ELEMENTS
 const matchDayOne = document.querySelector('#match-date1');
@@ -8,7 +8,6 @@ const matchDayTwo = document.querySelector('#match-date2');
 
 // OUTPUT ELEMENTS
 const matchDisplay = document.querySelector('#match-display');
-
 const messageBox = document.querySelector('#match-message-box');
 const messageText = messageBox.querySelector('#match-message');
 
@@ -39,15 +38,14 @@ function displayMessage(msgObj) {
 		for (const message in msgObj) {
 			const color = msgObj[message];
 
-			messageBox.className = '';
 			messageText.innerHTML = message;
-			if (color) {
+			messageBox.className = '';
+			if (color !== '') {
 				messageBox.classList.add(color);
 			}
 		}
 	} else {
 		messageBox.classList.add('hidden');
-		console.log("displayMessage() received a n empty message");
 	}
 }
 
@@ -79,6 +77,50 @@ matchDayOne.addEventListener('change', function () {
 });
 
 matchDayTwo.addEventListener('change', function () {
+	match.setDayTwo(matchDayTwo.value);
+	match.checkDays();
+	updateDisplay();
+	displayMessage(match.getMessage());
+});
+
+matchDayOne.parentNode.addEventListener('wheel', function (event) {
+	event.preventDefault();
+
+	var currentDate = new Date(matchDayOne.value);
+	var newDate = new Date(currentDate);
+	var scrollAmount = event.deltaY;
+
+	if (scrollAmount > 0) {
+		newDate.setDate(currentDate.getDate() + 1);
+	} else if (scrollAmount < 0) {
+		newDate.setDate(currentDate.getDate() - 1);
+	}
+
+	var formattedDate = newDate.toISOString().split('T')[0];
+	matchDayOne.value = formattedDate;
+
+	match.setDayOne(matchDayOne.value);
+	match.checkDays();
+	updateDisplay();
+	displayMessage(match.getMessage());
+});
+
+matchDayTwo.parentNode.addEventListener('wheel', function (event) {
+	event.preventDefault();
+
+	var currentDate = new Date(matchDayTwo.value);
+	var newDate = new Date(currentDate);
+	var scrollAmount = event.deltaY;
+
+	if (scrollAmount > 0) {
+		newDate.setDate(currentDate.getDate() + 1);
+	} else if (scrollAmount < 0) {
+		newDate.setDate(currentDate.getDate() - 1);
+	}
+
+	var formattedDate = newDate.toISOString().split('T')[0];
+	matchDayTwo.value = formattedDate;
+
 	match.setDayTwo(matchDayTwo.value);
 	match.checkDays();
 	updateDisplay();
