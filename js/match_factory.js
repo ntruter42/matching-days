@@ -5,6 +5,8 @@ function MatchingDays() {
 
 	const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+	/* ==================== SETTERS ==================== */
+
 	function setDayOne(dateString) {
 		if (dateString === '') {
 			day1 = '';
@@ -23,6 +25,8 @@ function MatchingDays() {
 		}
 	}
 
+	/* ==================== GETTERS ==================== */
+
 	function getDayOne() {
 		return day1;
 	}
@@ -31,14 +35,15 @@ function MatchingDays() {
 		return day2;
 	}
 
+	/* ==================== COMPARISONS ==================== */
 
 	function checkDays() {
 		if (day1 === '' && day2 === '') {
-			setMessage('Select <b>Date One</b> and <b>Date Two</b>', '');
+			setMessage('Select <b>Date One</b> and <b>Date Two</b>', 'white-text');
 		} else if (day1 === '') {
-			setMessage('Select <b>Date One</b>', '');
+			setMessage('Select <b>Date One</b>', 'white-text');
 		} else if (day2 === '') {
-			setMessage('Select <b>Date Two</b>', '');
+			setMessage('Select <b>Date Two</b>', 'white-text');
 		} else if (day1 === day2) {
 			setMessage("It's a match!", 'green-text');
 		} else if (day1 !== day2) {
@@ -61,14 +66,14 @@ function MatchingDays() {
 		} else if (day === day2) {
 			return 'red';
 		}
-		return '';
+		return 'transparent';
 	}
+
+	/* ==================== MESSAGES ==================== */
 
 	function setMessage(messageContent, color) {
 		if (messageContent !== '') {
 			message[messageContent] = color;
-		} else {
-			console.log("messageContent for setMessage is empty");
 		}
 	}
 

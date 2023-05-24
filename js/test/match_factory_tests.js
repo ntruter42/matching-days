@@ -96,14 +96,14 @@ describe('MatchingDays', function () {
 			assert.equal(match.colorName(match.getDayTwo()), 'green');
 		});
 
-		it('should return "blue" for first day it doesn\'t match second day', function () {
+		it('should return "blue" for first day if it doesn\'t match second day', function () {
 			match.setDayOne('2000-05-15');
 			match.setDayTwo('2022-10-20');
 
 			assert.equal(match.colorName(match.getDayOne()), 'blue');
 		});
 
-		it('should return "red" for second day it doesn\'t match first day', function () {
+		it('should return "red" for second day if it doesn\'t match first day', function () {
 			match.setDayOne('1922-02-20');
 			match.setDayTwo('2022-02-20');
 

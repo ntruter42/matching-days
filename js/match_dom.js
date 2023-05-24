@@ -16,18 +16,29 @@ let messageTimeout = null;
 
 // INITIALIZATION
 const match = MatchingDays();
-match.checkDays();
-clearInputs();
-updateDisplay();
-displayMessage(match.getMessage());
+setInputs();
+eventSequence();
 
 /* ==================== INPUT ==================== */
 
-function clearInputs() {
-	matchDayOne.value = '';
-	matchDayTwo.value = '';
+function saveInputs() {
+	if (matchDayOne.value === '') {
+		localStorage.removeItem('date1');
+	} else {
+		localStorage.setItem('date1', matchDayOne.value);
+	}
+
+	if (matchDayTwo.value === '') {
+		localStorage.removeItem('date2');
+	} else {
+		localStorage.setItem('date2', matchDayTwo.value);
+	}
 }
 
+function setInputs() {
+	matchDayOne.value = localStorage.getItem('date1');
+	matchDayTwo.value = localStorage.getItem('date2');
+}
 
 /* ==================== MESSAGES ==================== */
 
@@ -44,8 +55,6 @@ function displayMessage(msgObj) {
 				messageBox.classList.add(color);
 			}
 		}
-	} else {
-		messageBox.classList.add('hidden');
 	}
 }
 
@@ -65,114 +74,111 @@ function updateDisplay() {
 	};
 
 	matchDisplay.innerHTML = dayTemplate(dayTa);
+
+	// const dayElements = document.querySelectorAll('.day-box');
+	// dayElements.forEach(dayBox => {
+	// 	dayBox.addEventListener('click', function () {
+	// 		TODO:
+	// 		search nearest date that matches day of input boxes
+	// 		set both input boxes to their nearest dates, respectively
+	// 		checkDays()
+	// 		updateDisplay()
+	// 		displayMessage()
+	// 	});
+	// });
+}
+
+/* ==================== EXTRA FUNCTIONALITY ==================== */
+
+function scrollEvent(event, day) {
+	let offset = 0;
+
+	if (day === 1 || day === 3) {
+		if (matchDayOne.value === '') {
+			matchDayOne.valueAsDate = new Date();
+			offset = 1;
+		}
+
+		let currentDate = new Date(matchDayOne.value);
+		let newDate = new Date(currentDate);
+		let scrollAmount = event.deltaY;
+
+		if (scrollAmount < 0) {
+			newDate.setDate(currentDate.getDate() + 1);
+		} else if (scrollAmount > 0) {
+			newDate.setDate(currentDate.getDate() - 1);
+		}
+
+		var formattedDate = newDate.toISOString().split('T')[0];
+		matchDayOne.value = formattedDate;
+	}
+
+	if (day === 2 || day === 3) {
+		if (matchDayTwo.value === '') {
+			matchDayTwo.valueAsDate = new Date();
+		}
+
+		let currentDate = new Date(matchDayTwo.value);
+		let newDate = new Date(currentDate);
+		let scrollAmount = event.deltaY;
+
+		if (scrollAmount < 0) {
+			newDate.setDate(currentDate.getDate() + 1);
+		} else if (scrollAmount > 0) {
+			newDate.setDate(currentDate.getDate() - 1);
+		}
+
+		let formattedDate = newDate.toISOString().split('T')[0];
+		matchDayTwo.value = formattedDate;
+	}
+}
+
+function eventSequence() {
+	match.setDayOne(matchDayOne.value);
+	match.setDayTwo(matchDayTwo.value);
+	match.checkDays();
+	updateDisplay();
+	displayMessage(match.getMessage());
+	saveInputs();
 }
 
 /* ==================== EVENT LISTENERS ==================== */
 
 matchDayOne.addEventListener('change', function () {
-	match.setDayOne(matchDayOne.value);
-	match.checkDays();
-	updateDisplay();
-	displayMessage(match.getMessage());
+	eventSequence();
 });
 
 matchDayTwo.addEventListener('change', function () {
-	match.setDayTwo(matchDayTwo.value);
-	match.checkDays();
-	updateDisplay();
-	displayMessage(match.getMessage());
+	eventSequence();
 });
 
 matchDayOne.parentNode.addEventListener('wheel', function (event) {
-	event.preventDefault();
-
-	if (matchDayOne.value === '') {
-		matchDayOne.valueAsDate = new Date();
-	}
-
-	let currentDate = new Date(matchDayOne.value);
-	let newDate = new Date(currentDate);
-	let scrollAmount = event.deltaY;
-
-	if (scrollAmount < 0) {
-		newDate.setDate(currentDate.getDate() + 1);
-	} else if (scrollAmount > 0) {
-		newDate.setDate(currentDate.getDate() - 1);
-	}
-
-	var formattedDate = newDate.toISOString().split('T')[0];
-	matchDayOne.value = formattedDate;
-
-	match.setDayOne(matchDayOne.value);
-	match.checkDays();
-	updateDisplay();
-	displayMessage(match.getMessage());
+	scrollEvent(event, 1);
+	eventSequence();
 });
 
 matchDayTwo.parentNode.addEventListener('wheel', function (event) {
-	event.preventDefault();
-
-	if (matchDayTwo.value === '') {
-		matchDayTwo.valueAsDate = new Date();
-	}
-
-	let currentDate = new Date(matchDayTwo.value);
-	let newDate = new Date(currentDate);
-	let scrollAmount = event.deltaY;
-
-	if (scrollAmount < 0) {
-		newDate.setDate(currentDate.getDate() + 1);
-	} else if (scrollAmount > 0) {
-		newDate.setDate(currentDate.getDate() - 1);
-	}
-
-	let formattedDate = newDate.toISOString().split('T')[0];
-	matchDayTwo.value = formattedDate;
-
-	match.setDayTwo(matchDayTwo.value);
-	match.checkDays();
-	updateDisplay();
-	displayMessage(match.getMessage());
+	scrollEvent(event, 2);
+	eventSequence();
 });
 
 matchDisplay.addEventListener('wheel', function (event) {
-	event.preventDefault();
+	scrollEvent(event, 1 + 2);
+	eventSequence();
+});
 
-	if (matchDayOne.value === '') {
-		matchDayOne.valueAsDate = new Date();
-	}
+matchDayOne.parentNode.addEventListener('auxclick', function () {
+	matchDayOne.value = '';
+	eventSequence();
+});
 
-	if (matchDayTwo.value === '') {
-		matchDayTwo.valueAsDate = new Date();
-	}
+matchDayTwo.parentNode.addEventListener('auxclick', function () {
+	matchDayTwo.value = '';
+	eventSequence();
+});
 
-	let currentDate1 = new Date(matchDayOne.value);
-	let newDate1 = new Date(currentDate1);
-	let currentDate2 = new Date(matchDayTwo.value);
-	let newDate2 = new Date(currentDate2);
-
-	let scrollAmount = event.deltaY;
-
-	if (scrollAmount < 0) {
-		newDate1.setDate(currentDate1.getDate() + 1);
-	} else if (scrollAmount > 0) {
-		newDate1.setDate(currentDate1.getDate() - 1);
-	}
-
-	if (scrollAmount < 0) {
-		newDate2.setDate(currentDate2.getDate() + 1);
-	} else if (scrollAmount > 0) {
-		newDate2.setDate(currentDate2.getDate() - 1);
-	}
-
-	let formattedDate1 = newDate1.toISOString().split('T')[0];
-	let formattedDate2 = newDate2.toISOString().split('T')[0];
-	matchDayOne.value = formattedDate1;
-	matchDayTwo.value = formattedDate2;
-
-	match.setDayOne(matchDayOne.value);
-	match.setDayTwo(matchDayTwo.value);
-	match.checkDays();
-	updateDisplay();
-	displayMessage(match.getMessage());
+matchDisplay.addEventListener('auxclick', function () {
+	matchDayOne.value = '';
+	matchDayTwo.value = '';
+	eventSequence();
 });
