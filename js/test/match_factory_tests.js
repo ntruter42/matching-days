@@ -37,21 +37,21 @@ describe('MatchingDays', function () {
 		it('should be able to check if no day is selected', function () {
 			match.checkDays();
 
-			assert.deepEqual(match.getMessage(), { "Select <b>Date One</b> and <b>Date Two</b>": '' });
+			assert.deepEqual(match.getMessage(), { "Select <b>Date One</b> and <b>Date Two</b>": 'white-text' });
 		});
 
 		it('should be able to check if only first day is selected and set message to "Select Day Two"', function () {
 			match.setDayOne('2023-02-07');
 			match.checkDays();
 
-			assert.deepEqual(match.getMessage(), { "Select <b>Date Two</b>": '' });
+			assert.deepEqual(match.getMessage(), { "Select <b>Date Two</b>": 'white-text' });
 		});
 
 		it('should be able to check if only second day is selected and set message to "Select Day One"', function () {
 			match.setDayTwo('1960-06-30');
 			match.checkDays();
 
-			assert.deepEqual(match.getMessage(), { "Select <b>Date One</b>": '' });
+			assert.deepEqual(match.getMessage(), { "Select <b>Date One</b>": 'white-text' });
 		});
 
 		it('should be able to check if days are selected and set message to "It\'s a match" if they match', function () {
@@ -67,7 +67,7 @@ describe('MatchingDays', function () {
 			match.setDayTwo('2022-10-20');
 			match.checkDays();
 
-			assert.deepEqual(match.getMessage(), { "No match :(": 'grey-text' });
+			assert.deepEqual(match.getMessage(), { "No match :(": 'red-text' });
 		});
 	});
 
